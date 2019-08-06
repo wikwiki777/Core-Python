@@ -17,9 +17,19 @@ def test_is_in(collection, item):
     else:
         assert item in collection, "{0} does not contain {1}".format(collection, item)
 
+
+def test_not_in(collection, item):
+    if isinstance(collection, dict):
+        assert item not in collection and item not in collection.values(), "{0} does contain key or value {1}".format(collection, item)
+    else:
+        assert item not in collection, "{0} does contain {1}".format(collection, item)
+
+
 # Tests to fail
 # test_are_equal(number_of_evens([1, 2, 3, 4, 5]), 2)
 # test_not_equal(2, 2)
-test_is_in([3, 4, 5, 6, 6], 2)
+# test_is_in([3, 4, 5, 6, 6], 2)
 # test_is_in((2, 3, 4, 5), 1)
 # test_is_in({"red": 1, "blue": 2}, 3)
+# test_not_in({"red": 1, "blue": 2}, "red")
+test_not_in((2, 3, 4, 5), 2)
