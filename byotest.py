@@ -12,12 +12,14 @@ def test_not_equal(a, b):
 
 
 def test_is_in(collection, item):
-    assert item in collection, "{0} does not contain {1}".format(collection, item)
+    if isinstance(collection, dict):
+        assert item in collection or item in collection.values(), "{0} does not contain key or value {1}".format(collection, item)
+    else:
+        assert item in collection, "{0} does not contain {1}".format(collection, item)
 
-# Test to fail
-test_are_equal(number_of_evens([1, 2, 3, 4, 5]), 2)
+# Tests to fail
+# test_are_equal(number_of_evens([1, 2, 3, 4, 5]), 2)
 # test_not_equal(2, 2)
-# test_is_in([3, 4, 5, 6, 6], 2)
-# test_is_in((2, 3, 4, 5), 5)
-#test_is_in({"red":1, "blue":2}, 1)
-
+test_is_in([3, 4, 5, 6, 6], 2)
+# test_is_in((2, 3, 4, 5), 1)
+# test_is_in({"red": 1, "blue": 2}, 3)
